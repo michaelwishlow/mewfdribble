@@ -1,8 +1,17 @@
 - @posts.each do |post|
+	= link_to "add new stuff", new_post_path 
+	%br/
 	= link_to (image_tag post.image.url(:small))
 	%h2= link_to post.title, post
+	%p
+		= post.comments.count
+		Comments
+	%p
+		= post.get_likes.size
+		Likes
 
-	= link_to "add new stuff", new_post_path
+
+	
 
 	
 
