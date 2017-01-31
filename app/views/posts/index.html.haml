@@ -1,14 +1,40 @@
-- @posts.each do |post|
-	
+- if user_signed_in?
+	%p#intro
+		Hello
+		= current_user.name
+		%br/
 
-	= link_to (image_tag post.image.url(:small))
-	%h2= link_to post.title, post
-	%p
-		= post.comments.count
-		Comments
-	%p
-		= post.get_likes.size
-		Likes
+		%span
+			Share your crap and see see what other people into !
+- else
+	%p#intro
+		What perks your interest ?
+		%br/
+		%span
+			Share your crap and see see what other people into !
+
+
+#posts
+	- @posts.each do |post|
+		.post
+			.post_image
+				= link_to (image_tag post.image.url(:small))
+			.post_content
+				.title
+					%h2= link_to post.title, post
+				.data.clearfix
+					%p.username
+						Shared by
+						= post.user.name
+					%p.buttons
+						%span
+							%i.fa.fa-comments-o
+							=post.comments.count
+						%span
+							%i.fa.fa-thumbs-o-up
+							=post.get_likes.size
+
+						
 
 
 	
